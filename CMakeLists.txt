@@ -3,4 +3,4 @@ project(melonwmDemo C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(melonwmDemo main.c)
+add_executable(melonwmDemo main.c ptr.c)

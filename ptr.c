@@ -76,7 +76,7 @@
 **************************结构体指针*************************
 ************************************************************/
 
-typedef struct _Person{
+/*typedef struct _Person{
     char* firstname;
     char* lastname;
     char* title;
@@ -146,21 +146,21 @@ void processPerson(){
     deallocatePerson(ptrPerson);
     free(ptrPerson);
     printf("指针方法：结构图初始化成功并释放了内部指针以及结构体本身指针\n");
-}
+}*/
 
 /************************************************************
 **************************链表********************************
 ************************************************************/
 
-typedef struct _emplyee{
+/*typedef struct _emplyee{
     char name[32];
     unsigned int age;
 } Employee;
 
-typedef struct _node{
+*//*typedef struct _node{
     void *data;
     struct _node* next;
-} Node;
+} Node;*//*
 
 typedef struct _linkedList{
     Node *head;
@@ -178,7 +178,7 @@ int compareEmployee(Employee* e1,Employee* e2){
 
 void displayEmployee(Employee* employee){
     printf("%s\t%d\n",employee->name,employee->age);
-}
+}*/
 
 
 
@@ -248,5 +248,7 @@ int main01(void) {
     // initializePerson(ptrPerson, "zhang", "si", "ceo", 40);
     // printf("%d\n",ptrPerson->age);
     // returnPerson(ptrPerson);
+
+
     return 0;
 }

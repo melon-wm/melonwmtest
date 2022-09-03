@@ -3,6 +3,69 @@
 #include<math.h>
 #include<string.h>
 
+typedef struct {
+    unsigned int age;
+}xiaoxuesheng;
+
+typedef struct {
+    unsigned int age;
+    xiaoxuesheng wuxuhan;
+}xuesheng;
+
+typedef struct _employee{
+    char name[32];
+    unsigned int age;
+}Employee;
+
+int compareEmployee(Employee* e1,Employee* e2){
+    return strcmp(e1->name,e2->name);
+}
+
+void displayEmployee(Employee* employee){
+    printf("%s\t%d\n",employee->name,employee->age);
+}
+
+//函数指针
+typedef void (*DISPLAY)(void*);
+typedef int (*COMPARE)(void*,void*);
+
+typedef struct _jiedian{
+    void* data;
+    struct _jiedian* next//下一个节点的地址
+} Jiedian;
+
+typedef struct _lianjieliebiao{
+    Jiedian* head;
+    Jiedian* tail;
+    Jiedian* current;
+} Lianjieliiebiao;
+
+
+void initializeList(Lianjieliiebiao*);                   // 初始化列表
+void addHead(Lianjieliiebiao*,void*);                    //给链表的头节点添加数据
+void addTail(Lianjieliiebiao*,void*);                    //给链表的尾节点添加数据
+void delete(Lianjieliiebiao*,Jiedian*);                  //从链表删除节点
+Jiedian* getJiedian(Lianjieliiebiao*,COMPARE,void*);     //返回包含指定数据的节点指针
+void displayLianjieliebiao(Lianjieliiebiao*,DISPLAY);    //打印链表
+
+void initializeList(Lianjieliiebiao* list){
+    list->head=NULL;
+    list->tail=NULL;
+    list->current=NULL;
+}
+
+void addHead(Lianjieliiebiao* list,void* data){
+    Jiedian* jiedian=(Jiedian*) malloc(sizeof(Jiedian));
+    jiedian->data=data;
+    if(list->head==NULL){
+        list->tail=jiedian;
+        jiedian->next=NULL;
+    } else{
+        jiedian->next=list->head;
+    }
+    list->head=jiedian;
+}
+
 int *dowork() {
     int a = 10;
     int *p = &a;
@@ -121,5 +184,28 @@ int main() {
     //test05();
     /********五：字符串指针强化*********************/
     //test06();
+    /*xuesheng* ptr=(xuesheng*) malloc(sizeof(xuesheng));
+    ptr->wuxuhan.age=18;
+    printf("%d\n",ptr->wuxuhan.age);*/
+    /*******六：链表******************************/
+    Lianjieliiebiao lianjieliiebiao;
+
+    Employee* samuel=(Employee*)malloc(sizeof(Employee));
+    strcpy(samuel->name,"Susan");
+    samuel->age=32;
+
+    Employee* sally=(Employee*)malloc(sizeof(Employee));
+    strcpy(sally->name,"Sally");
+    sally->age=28;
+
+    Employee* susan=(Employee*)malloc(sizeof(Employee));
+    strcpy(susan->name,"Susan");
+    susan->age=45;
+
+    initializeList(&lianjieliiebiao);
+    addHead(&lianjieliiebiao,samuel);
+    addHead(&lianjieliiebiao,sally);
+    addHead(&lianjieliiebiao,susan);
+
     return 0;
 }
